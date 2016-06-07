@@ -1,0 +1,366 @@
+<!-- InstanceBegin template="/Templates/Main-Template.dwt" codeOutsideHTMLIsLocked="false" --><!DOCTYPE html >
+
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Hot-Spot Map | Jalpaiguri Birds</title>
+<!-- InstanceEndEditable -->
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<!-- InstanceBeginEditable name="metatags" -->
+<meta name="keywords" content="Jalpaiguri Birds hot spots, birding areas north bengal, birding hot-spots, birding locations, birding destinations, birding map" />
+<meta name="description" content="The birding hotspots of north-bengal and north-east">
+<!-- InstanceEndEditable -->
+<meta name="author" content="Mousumi Dutta" />
+<link rel="shortcut icon"  href="Other-Images/logo/header.png">
+<link href="css/styles.css" rel="stylesheet" type="text/css" media="screen" >
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="screen" >
+<link rel="stylesheet" href="css/introjs.min.css" type="text/css" />
+<link rel="stylesheet" href="css/introjs-rtl.min.css" type="text/css" />
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/page.js"></script>
+<script src="js/intro.min.js"></script>
+<!-- InstanceBeginEditable name="head" -->
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+var stationList = [
+  {"latlng":[27.6904918,88.7386537],name:"North Sikkim",SRC:"Other-Images/Hot - Spots-Images/North-Sikkim/North-Sikkim-Main.jpg",DISTRICT:"North Sikkim",STATE:"Sikkim",URL:"North Sikkim.html"},
+  {"latlng":[26.6459244,89.5468139],name:"Buxa Tiger Resrve",SRC:"Other-Images/Hot - Spots-Images/Buxa Tiger Reserve/Buxa Habitat.jpg",DISTRICT:"Alipurduar",STATE:"West Bengal",URL:"Buxa.html"},
+  {"latlng":[27.2256168,88.6273634],name:"Zuluk-Lungthung",SRC:"Other-Images/Hot - Spots-Images/Zuluk-lungthu/zuluk.jpg",DISTRICT:"East Sikkim",STATE:"Sikkim",URL:"Zuluk-Lungthu.html"}
+];
+var infoWnd, mapCanvas, test, src, district, state, url;
+
+var initPos = new google.maps.LatLng(25.304303764403617,87.47314453125);
+function initialize() {
+  //Creates a map object.
+  var mapDiv = document.getElementById("map_canvas");
+  mapCanvas = new google.maps.Map(mapDiv);
+  mapCanvas.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+  //Creates a infowindow object.
+  infoWnd = new google.maps.InfoWindow();
+  
+  //Mapping markers on the map
+ // bounds = new google.maps.LatLngBounds();
+  
+  mapCanvas.setCenter(initPos);
+  mapCanvas.setZoom(6);
+  
+  
+  var station, i, latlng;
+  for (i in stationList) {
+    //Creates a marker
+    station = stationList[i];
+    latlng = new google.maps.LatLng(station.latlng[0], station.latlng[1]);
+   // bounds.extend(latlng);
+    src=station.SRC;
+	district=station.DISTRICT;
+	state=station.STATE;
+	url=station.URL;
+    var marker = createMarker(
+      mapCanvas, latlng, station.name, src, district, state, url 
+    );
+    
+    //Creates a sidebar button for the marker
+    createMarkerButton(marker);
+  }
+  //Fits the map bounds
+ // mapCanvas.fitBounds(bounds);
+ //Retrive the center location
+  google.maps.event.addListener(mapCanvas, "zoom_changed", function() {
+	if(mapCanvas.getZoom()!=6){
+		if($('.reset').hasClass('hiddena')){
+			$('.reset').removeClass('hiddena');
+			$('.reset').addClass('shown');
+		}
+	}
+	else{
+		if($('.reset').hasClass('shown')){
+		$('.reset').removeClass('shown');
+				$('.reset').addClass('hiddena');
+				
+			}
+	}
+  });
+  
+}
+
+function reset(){
+infoWnd.close();
+mapCanvas.setZoom(6);
+mapCanvas.setCenter(initPos);
+$('.loc').removeClass('active');
+}
+
+
+function createMarker(map, latlng, title, src, district, state, url) {
+  //Creates a marker
+  var marker = new google.maps.Marker({
+    position : latlng,
+    map : map,
+	animation: google.maps.Animation.DROP,
+    title : title,
+	src:src,
+	district:district, 
+	state:state, 
+	url:url
+  });
+  
+ //The infoWindow is opened when the sidebar button is clicked
+    google.maps.event.addListener(marker, "click", function(){
+    infoWnd.setContent("<strong class='highlight1'>" + title + "</strong><br>" + 
+	"<img src='"+src+"' class='map-image img-responsive' width='150' height='100' alt='"+title+"'>"+
+	"<P class='map-description'>"+
+	"<p class='clearfix'><span class='pull-left'><strong>Region:</strong></span><span class='pull-right'>"+district+"</span></p>"+
+	"<p class='clearfix'><span class='pull-left'><strong>State:</strong></span><span class='pull-right'>"+state+"</span></p>"+
+	"<a target='_blank' href='"+url+"'><p class='read-button highlight3 uper'>Get Info &nbsp;<span class='glyphicon glyphicon glyphicon-share-alt'></span></p></a>");
+    infoWnd.open(map, marker);
+    map.setZoom(7);
+    map.setCenter(marker.getPosition());
+    
+    if(test) {
+    google.maps.event.removeListener(test);
+    }
+    
+    test = google.maps.event.addListener(infoWnd, "closeclick", function(){
+    reset();
+    });
+  });
+   
+  return marker;
+}
+function createMarkerButton(marker) {
+  //Creates a sidebar button
+  var ul = document.getElementById("marker_list");
+  var li = document.createElement("li");
+  $(li).addClass('loc');
+  var title = marker.getTitle();
+  li.innerHTML = title;
+  ul.appendChild(li);
+  
+  
+  
+//placing the Reset button at last  
+var last = $('#marker_list').children().last();
+var resetButton = $('.reset');
+$(resetButton).insertAfter(last);
+  
+  //Trigger a click event to marker when the button is clicked.
+  google.maps.event.addDomListener(li, "click", function(){
+	 	show = this;
+  	if($('.loc').hasClass('active')){
+  		$('.loc').removeClass('active');
+  	}
+  	$(show).addClass('active');
+    google.maps.event.trigger(marker, "click");
+  });
+  
+   google.maps.event.addListener(marker, "click", function() {
+	  var m_title = marker.title;
+	  for (i in stationList) {
+	 if(stationList[i].name==m_title){
+				$("#marker_list li").filter(function () {
+				var text = $(this).text();
+				if($('.loc').hasClass('active')){
+					$('.loc').removeClass('active');
+				}
+				return text === m_title;
+			}).addClass("active");
+	  	}
+	  }
+	});
+
+}
+google.maps.event.addDomListener(window, "load", initialize);
+</script>
+<!-- InstanceEndEditable -->
+</head>
+<body class="body"> 
+            <div id="fb-root"></div>
+			
+            <div class="row top-most shadow" style="margin:0; padding:0;">
+                            <div class="col-md-4 col-sm-12">
+                            <div id="banner" class="row green-bg" >
+                      
+                                        <a href="Index.html" style="text-decoration:none">
+                                        <p id="header-name" class="lobster">Jalpaiguri<span><img id="logo" class="img-circle" src="Other-Images/logo/new%20logo.jpg"></span>Birds</p> 
+                                        </a>
+                             
+                                      <a href="#" class="scrollToTop" style="text-decoration:none;"><span class="glyphicon glyphicon-chevron-up"></span><p>Top</p></a>
+                                       <div id="help-dialog">  
+                                         <button class="scrollToHelp" style="text-decoration:none;" data-target="#myModal" href="javascript:void(0);" onclick="javascript:introJs().start();"><span class="glyphicon glyphicon-question-sign"></span><p>Help</p></button>
+                                       </div>        
+                      </div>
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                            <div id="navigator" >
+                                                <nav class="navbar navbar-default" role="navigation" style="background-color:transparent;border-color:none;margin-bottom:0px;">
+                                                    <div class="navbar-header">
+                                                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                                        <span class="sr-only">Toggle navigation</span>
+                                                        <span class="icon-bar"></span>
+                                                        <span class="icon-bar"></span>
+                                                        <span class="icon-bar"></span>
+                                                      </button>
+                                                    </div>
+                                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                                      <ul class="nav navbar-nav lobster">
+                                                        <li class="highlight3a underlined centuro m-left vanish"><a href="Index.html">Home</a></li> 
+                                                        <li class="highlight3a underlined centuro m-left vanish"><a href="Checklist%20-%20Jalpaiguri%20&%20Teesta%20Riverbed.html">Checklist</a></li>
+                                                        <li class="highlight3a underlined centuro m-left vanish"><a href="Gallery.html">Gallery</a></li>
+                                                        <li class="highlight3a underlined centuro m-left vanish"><a href="Trip-Reports.html">Trip-Reports</a></li>
+                                                        <li class="highlight3a underlined centuro m-left vanish"><a href="Hot-Spot.html">Hot-Spot Map</a></li>
+                                                        <li class="highlight3a underlined centuro m-left vanish"><a href="Generalinfo.html">General-Informations</a></li>
+                                                        <li class="highlight3a underlined centuro m-left vanish"><a href="Team.html">Team</a></li>
+                                                        <li class="highlight3a m-glass centuro m-left">
+                                                        <form autocomplete="off" action="http://www.google.com/cse" id="cse-search-box" target="_blank"  role="search">
+                                                        <input type="hidden" name="cx" value="011962969795728809989:p8xun0sqwp0" >
+                                                        <input type="hidden" name="ie" value="UTF-8">
+                                                        <input type="text" name="q" class="search-field" placeholder="SEARCH    JALPAIGURI BIRDS" >
+                                                        <input name="siteurl" type="hidden" value="www.jalpaiguribirds.com">
+                                                        <input name="ref" type="hidden" value="">
+                                                        <input name="ss" type="hidden" value="">
+                                                        <input type="submit" name="sa" class="search-submit" value="Search">
+                                                        </form> 
+                                                        </li>
+                                                        <li class="cross centuro"><img class="close-image" style="height:36px ; width:36px;" src="Other-Images/multiply-.png"></li>
+                                                      </ul>
+                                                    </div>
+                                                </nav>
+                                                  
+                                                     <style>
+                                                        .navbar .navbar-nav {
+                                                            display: inline-block;
+                                                            float: none;
+                                                        }
+                                                        .navbar .navbar-collapse {
+                                                            text-align: center;
+                                                        }
+                                                     </style>
+                             </div>
+                            </div>
+                        </div>
+                 
+<!-- InstanceBeginEditable name="body" -->
+<p class="header-texts lobster centuro  margin-top"> Hot-Spot Map </p>
+
+            <div id="hot-spot" class="container">
+            
+                        <div id="spot-area" class="shadow row"> 
+                        <!--
+                                    <div class="spot">
+                                            <div class="trip-box">
+                                                    <p class="highlight0 centuro trip-header-text"> North Sikkim </p>
+                                                    <div class="row">
+                                                                <div id="image" class="col-md-4 col-sm-6 col-xs-12">
+                                                                        <p class="centuro trip-image"><img class="img-thumbnail" src="Hot - Spots/North-Sikkim/North-Sikkim-Main.jpg"></p>
+                                                                        <p class="highlight4 centuro"> North Sikkim : Oxbow Lake Formation </p>
+                                                                </div>
+                                                                <div class="read  col-md-8 col-sm-6 col-xs-12" style="margin-top:30px;"  >
+                                                                  <p>
+                                                                          <span class="highlight">A</span> major part of the North Sikkim landscape falls under the Kanchenjunga Biosphere Reserve. This is the region where the Himalayas give way to the Tibetan Plateaumakinga diverse landscape within a small area. 
+                                                                          The Lachung area is characterised by wide valleys, the most prominent being the Yumthang valley which is reached by passing through the Singba Rhododendron Sanctuary.
+                                                                          The Sanctuary boasts of at least 30 species of Rhododendrons and is also home to a variety of birds like Tits, Warblers, Sunbirds& Pheasants. Another road diverges from Chungthang towards the village of Lachen and proceeds further to the Gurudrongmar Lake 
+                                                                          .........<a target="_blank" href="North Sikkim.html" class="highlight2">READ MORE</a>
+                                                                  </p>
+                                                                </div>
+                                                     </div>
+                                                </div> 
+                                        </div>
+                                        
+                                        <br> -->
+                                        <ul id="marker_list" class="col-lg-2 col-md-2 col-sm-3 col-xs-12" data-intro="<strong><em>Exact Location of the Birding Hot-Spots :</em></strong><br><br>1. Click on the names of the places to check the location<br><br>2. Click <strong>GET INFO</strong> to go to the information page about that place. <br><br><strong>NOTE:</strong> You can click on the red colored markes on the map to do the same <br> why not trying ;)" data-position="right">
+                                        <li class='reset hiddena' onclick="reset()">Reset</li>
+                                        </ul>
+                                        <div id="map_canvas" class="col-lg-10 col-md-10 col-sm-9 col-xs-12"></div>
+                        </div>
+               
+               
+            </div>
+
+<!-- InstanceEndEditable -->
+        
+          <div id="footer" class="row shadow-rev"> 
+         
+                               <div id="site-map" class="col-md-3 col-sm-6 col-xs-12 footer-blocks">
+                                 <p class="header-texts-small lobster">Site-Map</p>
+                                    <div id="site-menu">
+                                          <ul>
+                                            <li class="highlight2"><a href="Index.html">Home</a></li> 
+                                            <li class="highlight2"><a href="Checklist%20-%20Jalpaiguri%20&%20Teesta%20Riverbed.html">Checklist</a></li>
+                                            <li class="highlight2"><a href="Gallery.html">Gallery</a></li>
+                                            <li class="highlight2"><a href="Trip-Reports.html">Trip-Reports</a></li>
+                                            <li class="highlight2"><a href="Hot-Spot.html">Hot-Spot Map</a></li>
+                                            <li class="highlight2"><a href="Generalinfo.html">General-Informations</a></li>
+                                            <li class="highlight2"><a href="Team.html">Team</a></li>
+                                          </ul>
+                                      </div>
+                               </div>
+                              
+                              <!-- <div id="latest-news" class="col-md-2 col-sm-6 col-xs-12 footer-blocks">
+                                 <p class="header-texts-small lobster">Highlights</p>
+                                   <div id="news-list">
+                                    <ul>
+                                    <li class="highlight2"><a style="color:#000" href="#">Latest news about sighting</a></li> 
+                                    <li class="highlight2"><a style="color:#000" href="#">Meeting / meet / workshop </a></li>
+                                     <li class="highlight2"><a style="color:#000" href="#">Upcoming events</a></li>
+                                    </ul>
+                                   </div>
+                                 </br></br>
+                                 <p class="header-texts-small lobster">Bird of the month</p>
+                                 <a target="_blank" href="../Bird Of The Month.html">
+                                 <p style="color:#000;text-decoration:none;" class="day highlight1">Hooded Pitta (<span class="highlight3" style="text-decoration:underline;">Pitta sordida</span>)</p>
+                                 <img id="" class="centuro img-circle  shadow" style="border:3px solid #fff;" src="../images/Bird of the month/Pitta_net-transparent.png">
+                                 </a>
+                               </div>
+                               
+                               <div id="literature" class="centuro col-md-4 col-sm-6 col-xs-12 footer-blocks">
+                                <p class="header-texts-small lobster ">Relevant Literatures & Publications</p>
+                                        <a target="_blank" href="#">
+                                        <p class="publication highlight1" style="color:#000;"> The Amur Falcon Story</p>
+                                          <img  class="img-thumbnail shadow" src="../images/photos/banner/ba20cover.jpg">
+                                        </a>
+                               </div> -->
+                              
+                               <div id="contact" class="col-md-3 col-sm-6 col-xs-12 footer-blocks">
+                                  <p class="header-texts-small lobster">We Like To hear from you</p>
+                                      <div id="di">
+	                                      <p class="header-texts-small"> Mousumi Dutta</p>
+    	                                  <span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;&nbsp; <span class="highlight3"> +91 9474590987</span><br>
+        	                              <span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;&nbsp; <a style="color:#000" class="highlight3" data-toggle="" data-placement="auto top" title="we are just one click away !!" target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=duttamousumi@gmail.com&cc=bishwapriya@gmail.com&su=RE:JALPAIGURI BIRDS:<-- please write your concern -->&body=Hi Mousumi , %0A%0A%0A%0A%0A%0AThanks,%0A%0AYour Name - %0AContact - "> duttamousumi@gmail.com</a><br>
+                                      </div></br>
+                                      <div id="da">
+	                                      <p class="header-texts-small">Biswapriya Rahut</p>
+    	                                  <span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;&nbsp; <span class="highlight3"> +91 9434010497</span><br>
+        	                              <span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;&nbsp; <a style="color:#000" class="highlight3" data-toggle="" data-placement="auto top" title="we are just one click away !!" target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=bishwapriya@gmail.com&cc=duttamousumi@gmail.com&su=RE:JALPAIGURI BIRDS:<-- please write your concern -->&body=Hi Biswapriya , %0A%0A%0A%0A%0A%0AThanks,%0A%0AYour Name - %0AContact - ">bishwapriya@gmail.com</a><br>
+                                      </div>
+                                     </br></br> 
+                                   <p class="header-texts-small lobster">Sharing is Caring</p>
+                                   <div class="fb-share-button" data-href="http://www.jalpaiguribirds.com/" data-layout="link"></div>
+                               </div>
+         
+          </div> 
+                              
+          <div id="copyright" class="row green-bg">                      
+                               <div class="col-md-12 col-sm-12 col-xs-12">
+                                 <p class="highlight4 centuro"> &copy; <span style="color:#fdfdfd;"> Mousumi Dutta </span> and <span style="color:#fdfdfd;">Biswapriya Rahut</span> 2003-2015 &nbsp; | &nbsp; All rights reserved &nbsp; | &nbsp; Created by <a style="color:#fdfdfd;" href="#"> Mousumi Dutta </a> and designed by <a style="color:#fdfdfd;" href="https://www.facebook.com/somesubhra.patra?ref=tn_tnmn">Some Subhra Patra</a>.</p>   
+                               </div>
+          </div>   
+  
+  
+ 
+ 
+  <!-- facebook share button --->
+
+ <script>
+ (function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3&appId=1529831917253997";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>          
+    
+           
+</body>
+               
+<!-- InstanceEnd --></html>

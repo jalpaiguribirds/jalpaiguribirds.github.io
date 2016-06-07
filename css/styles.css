@@ -1,0 +1,729 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Raleway:600);
+
+* {
+margin:0;
+padding:0;
+}
+
+.body {
+background-color:#F7F7FD;
+font-family:'Roboto Condensed',Arial, Helvetica,sans-serif;
+}
+
+.centuro {
+text-align:center;
+}
+
+.shadow {
+-moz-box-shadow:0 3px 6px #999;
+-webkit-box-shadow:0 3px 6px #999;
+box-shadow:0 3px 6px #999;
+}
+
+.shadow-rev {
+-moz-box-shadow:0 -3px 6px #999;
+-webkit-box-shadow:0 -3px 6px #999;
+box-shadow:0 -3px 6px #999;
+}
+
+
+.header-texts {
+font-size:26px;
+font-weight:400;
+text-transform:uppercase;
+}
+
+.lobster {
+font-family:'Raleway', sans-serif;
+text-transform:uppercase;
+}
+
+.header-texts-small {
+font-size:18px;
+font-weight:100;
+}
+
+.highlight0 {
+font-size:26px;
+font-weight:400;
+}
+
+.highlight {
+font-size:20px;
+font-weight:400;
+}
+
+.highlight1 {
+font-size:18px;
+font-weight:400;
+}
+
+.highlight2 {
+font-size:16px;
+font-weight:400;
+}
+
+.highlight3 {
+font-size:14px;
+font-weight:100;
+}
+
+.highlight3a {
+font-size:12px;
+font-weight:400;
+text-transform:none;
+}
+
+.highlight4 {
+font-size:11px;
+font-weight:400;
+text-transform:capitalize;
+}
+
+.uper {
+text-transform:uppercase;
+}
+.hidefornow {
+opacity:0;
+pointer-events: none;
+}
+.top-most {
+background-color:#37511F;
+border-top:1px solid #fff;	
+border-bottom:1px solid #fff;	
+}
+
+#banner {
+background-color:#37511F;
+margin:0 auto;
+text-align: center;
+}
+
+#logo {
+border: 3px solid #FFF;
+background-color: #fff;
+margin: 0px 10px 0;
+width: 66px;
+}
+
+#header-name {
+font-size: 30px;
+color: #fff;
+text-transform: uppercase;
+margin: 10px 0px;
+}
+
+#search-box {
+border:2px solid #6B6B6B;
+border-radius:3px;
+width:150px;
+background-repeat:no-repeat;
+background-color:#fff;
+font-weight:100;
+text-align:center;
+height:27px;
+font-size:13px;
+margin:2px;
+padding:2px;
+}
+
+.searching {
+border-left:1px solid #EFEFEF;
+}
+
+.dropdown-menu li {
+ margin:2px 0;
+}
+
+#navigator li:last-child:after {
+content:none;
+}
+
+#navigator {
+margin-top: 10px;
+}
+
+#header-name:hover, #navigator a:hover{
+	background-color:#334A1D;
+	border-radius:6px;
+	color:#fff;
+}
+
+/* Clear floated elements */
+#menu:after {
+visibility:hidden;
+display:block;
+font-size:0;
+content:" ";
+clear:both;
+height:0;
+}
+
+.scrollToTop {
+width:47px;
+height:47px;
+text-align:center;
+background-color:#DBE2C9;
+font-weight:700;
+color:#201C1D;
+text-decoration:none;
+position:fixed;
+bottom:0;
+right:40px;
+display:none;
+border-radius:6px 6px 0 0;
+z-index:9999;
+border:2px solid #fff;
+-moz-box-shadow:0 2px 6px #999;
+-webkit-box-shadow:0 2px 6px #999;
+box-shadow:0 2px 6px #999;
+padding:3px;
+}
+
+.scrollToHelp {
+width:50px;
+height:50px;
+text-align:center;
+background-color:#DBE2C9;
+color:#201C1D;
+font-weight:700;
+text-decoration:none;
+position:fixed;
+top:20%;
+right:40px;
+display:none;
+border-radius:26px;
+z-index:9999;
+border:2px solid #fff;
+-moz-box-shadow:0 2px 6px #999;
+-webkit-box-shadow:0 2px 6px #999;
+box-shadow:0 2px 6px #999;
+cursor:pointer;
+outline:none;
+padding:5px;
+}
+
+.scrollToTop p,.scrollToHelp p {
+font-size:11px;
+}
+
+#html5-image img {
+border:1px solid #ccc;
+border-radius:2px;
+}
+
+
+#welcome {
+color:#000;
+}
+
+#welcome-sighting, #tour-map, #trip-spot {
+margin-top:20px;
+}
+
+#sighting, #tour, #map, #trip-report, #bird-spot {
+ margin-top:20px;	
+}
+#welcome {
+margin-top:40px;
+} 
+.google-maps {
+position:relative;
+padding-bottom:75%;
+thisistheaspectratioheight:0;
+}
+
+.google-maps iframe {
+position:absolute;
+top:0;
+left:0;
+width:100%!important;
+height:90%!important;
+}
+
+
+.trip-box {
+border:1px solid #ccc;
+--moz-box-shadow:0 3px 6px #999;
+-webkit-box-shadow:0 3px 6px #999;
+box-shadow:0 3px 6px #999;
+background-color:#fff;
+margin:5px 0;
+padding:5px;
+}
+
+#trip-report, #bird-spot {
+padding:0 0;
+} 
+
+.reporter {
+display:inline;
+list-style-type:none;
+}
+
+.by {
+margin-bottom: 10px;
+height:100px;
+padding:0px 5px;
+}
+
+.date {
+float: left;
+text-transform: uppercase;
+width: 100%;
+color: #000;
+margin-bottom: 10px;
+text-align:center;
+border-radius: 2px;
+}
+
+.read-button {
+background-color: #DBE2C9;
+color: #000;
+padding: 5px;
+float: right;
+width: 100%;
+text-align: center;
+border-radius: 2px;
+font-family:'Roboto Condensed',Arial, Helvetica,sans-serif;
+}
+
+
+
+.trip-box a {
+text-decoration:none;
+color:#000;
+}
+
+.trip-header-text {
+border:1px solid #999;
+background-color:#37511F;
+color:#fff;
+padding:2px 5px;
+}
+
+#footer {
+border-top:2px solid #FFF;
+background-color:#DBE2C9;
+color:#000;
+margin:120px auto 0;
+padding:20px 0;
+}
+
+.footer-blocks {
+margin:5px 0;
+}
+
+#site-menu {
+list-style:none;
+padding-top:8px;
+width:12em;
+margin:0;
+}
+
+#site-menu li {
+list-style:none;
+margin:2px 0;
+padding:2px 0;
+}
+
+#site-menu a {
+background-color:#201C1D;
+color:#fff;
+display:block;
+text-decoration:none;
+font-weight:400;
+border-radius:3px;
+-moz-box-shadow:0 3px 6px #999;
+-webkit-box-shadow:0 3px 6px #999;
+box-shadow:0 3px 6px #999;
+margin:0;
+padding:8px 12px;
+}
+
+#site-menu a:hover {
+background:#6B6B6B;
+color:#fff;
+padding-bottom:8px;
+}
+
+#news-list {
+padding-left:15px;
+margin-top: 20px;
+}
+
+#news-list li {
+margin-bottom:8px;	
+}
+.contact-person {
+margin-left:20px;
+}
+
+.me {
+-webkit-animation:rotation 8s infinite linear;
+-moz-animation:rotation 8s infinite linear;
+}
+
+to {
+-webkit-transform:rotate(359deg);
+-moz-transform:rotate(359deg);
+}
+
+.day {
+color:#698352;
+}
+
+#copyright {
+background-color:#37511F;
+color:#f0f0f0;
+border-top:1px solid #FFF;
+border-bottom:1px solid #FFF;
+margin:auto 0;
+padding:10px 10px 0;
+}
+
+#selection {
+margin-top:15px;
+margin-bottom:80px;
+}
+
+#checklist-selection {
+border:1px solid #CCC;
+border-radius:5px;
+padding:5px;
+}
+
+#checklist-question {
+margin-top:130px;
+}
+
+.fixed {
+top:0;
+position:fixed;
+width:auto;
+display:none;
+border:none;
+}
+
+.scroll-left {
+float:left;
+}
+
+.scroll-right {
+float:right;
+}
+
+.scroll-left,.scroll-right {
+background-color:#DBE2C9;
+color:#201C1D;
+height:30px;
+width:60px;
+text-align:center;
+border-radius:4px;
+border:1px solid #ccc;
+outline:none;
+z-index:9999;
+margin:2px 0;
+}
+
+.no-display {
+ opacity:0;
+}
+
+.space-left {
+margin:20px;
+}
+
+#team-description {
+margin-top:5px;
+color:#000;
+}
+
+.glyphicon-triangle-bottom {
+float:right;	
+}
+.glyphicon-triangle-top {
+float:right;	
+}
+
+.image-header-main {
+margin-bottom:10px ;
+text-transform:uppercase;
+background-color:#37511F;
+color:#fff;
+border-radius:3px;
+padding:11px 3px 11px;
+}
+
+.image-header {
+border:1px solid #ccc;
+background-color: #37511F;
+border-radius: 3px;
+padding:5px 0;
+color: #fff;
+}
+
+gallery-images p {
+width:100%;
+margin-top:3px;
+}
+
+#Gallery-Accordion {
+}
+
+.item {
+margin-bottom: 20px;
+}
+     
+.subitem  {
+margin:0 0 5px 0;
+}
+
+#hotspot-main {
+border:1px solid #ccc;
+background-color:#fff;
+border-radius:6px;
+padding-bottom:30px;
+}
+
+#selection-hotspot {
+margin-bottom:20px;
+margin-left:-30px;
+}
+
+#BOM {
+margin-top:50px;
+border:2px solid #ccc;
+background-color:#fff;
+border-radius:6px;
+padding-bottom:30px;
+}
+
+.search-form {
+position:relative;
+top:2px;
+}
+
+.search-field {
+background-image:url(../Other-Images/searchicon2.png);
+background-position:10px center;
+background-repeat:no-repeat;
+background-size:24px 24px;
+border:none;
+height:36px;
+position:relative;
+width:0;
+margin:7px 0;
+padding:0 0 0 34px;
+border-radius:2px;
+}
+.search-field:focus {
+cursor:text;
+outline:0;
+background-image:url(../Other-Images/multiply-.png);
+background-size:24px 24px;
+margin-top:7px;
+}
+
+.close-image {
+position:relative;
+cursor:pointer;
+top:7px;
+display:inline-block;
+border:2px solid #fff;
+margin-left:5px;
+background-color:#DBE2C9;
+border-radius:2px;
+}
+
+input[type=search] {
+-webkit-appearance:textfield;
+}
+
+.introjs-helperNumberLayer,.search-submit {
+display:none;
+}
+
+.margin-top,#dropup-down {
+margin-top:30px;
+}
+
+* html #menu,:first-child+html #menu {
+zoom:1;
+}
+
+.scrollToTop:hover,.scrollToHelp:hover,.scroll-right:hover,.scroll-left:hover,.read-button:hover {
+background-color:#37511F;
+color:#fff;
+}
+
+
+#checklist,#team,#gallery,#hot-spot,#gen-info,.spots {
+margin-top:40px;
+}
+
+.gallery-images {
+margin-top:10px;
+}
+
+#hotspot-main p,#BOM p {
+line-height:150%;
+}
+
+#images > div {
+ margin-bottom:15px;	
+}
+
+
+@media (max-width: 992px) {
+	
+#latest-news {
+margin-bottom:50px;
+}
+#literature {
+margin-bottom:20px; text-align:left;
+}	
+.close-image {
+margin-bottom:5px;
+}
+
+#team-description {
+ margin-bottom:20px;	
+}
+
+#images > div {
+ margin-bottom:25px;	
+}
+
+.by {
+height:79px;
+}
+ 
+ }
+ 
+.trip-date {
+ border-right: 1px dashed #DBE2C9;
+} 
+ 
+@media (max-width: 767px) {
+.trip-date {
+margin-bottom:10px;
+border-right:none;
+}
+.trip-user-main {
+margin-top:20px;
+}
+} 
+
+.trip-user-main {
+padding-left:10px;
+} 
+
+.gen-info {
+margin:80px ;
+} 
+ 
+.me                         {
+                             -webkit-animation: rotation 8s infinite linear;
+							  -moz-animation: rotation 8s infinite linear;
+							   
+							 }
+														
+@-webkit-keyframes rotation {
+								from {-webkit-transform: rotate(0deg);
+								       -moz-transform: rotate(0deg);}
+								to   {-webkit-transform: rotate(359deg);
+								      -moz-transform: rotate(359deg);}
+
+                             }
+.navbar-toggle.collapsed {
+background-color:#000; 
+}
+
+#spot-area {
+background-color:#fff;
+padding:10px;	
+}
+
+#map_canvas {
+	height: 500px;
+	background-color: rgb(229, 227, 223);
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.map-image {
+	border-radius:2px;
+}
+ul#marker_list {
+	margin: 0;
+	padding: 0 10px 0 0;
+}
+ul#marker_list li {
+	list-style: none;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    color: #000;
+  	background-color: rgba(219, 226, 201, 0.6);
+    margin-bottom: 5px;
+    padding: 5px 5px;
+    text-align: left;
+    border-radius: 2px;
+    -moz-box-shadow: 0 3px 6px #999;
+    -webkit-box-shadow: 0 3px 6px #999;
+    box-shadow: 0 1px 3px #dbe2c9;
+    font-size:16px;
+} 
+ul#marker_list li:hover {
+background-color: #DBE2C9;
+}
+
+ul#marker_list li.reset{
+    margin: 15px 0;
+     text-align: center;
+}
+
+.hiddena {
+ opacity: 0;
+transition: opacity 0.6s ease-in-out;
+-moz-transition: opacity 0.6s ease-in-out;
+-webkit-transition: opacity 0.6s ease-in-out;
+}
+
+.shown {
+ opacity: 1;
+transition: opacity 0.6s ease-in-out;
+-moz-transition: opacity 0.6s ease-in-out;
+-webkit-transition: opacity 0.6s ease-in-out;
+}
+
+ul#marker_list li.loc.active, ul#marker_list li.reset{
+background-color: #37511F;
+color:#fff;
+}
+.map-description a{
+	color:#fff;
+	text-decoration:none;
+}
+
+.IUCN {
+color:#fff;
+}
+.lc {
+background-color: #259325; 
+}
+.ex {
+background-color:#464646; 
+}
+.nt {
+background-color:#BDA316; 
+}
+.cr {
+background-color: #cc3333;
+}
+.en {
+background-color: #cc6633;
+}
+.vu {
+background-color: #cc9900;	
+}

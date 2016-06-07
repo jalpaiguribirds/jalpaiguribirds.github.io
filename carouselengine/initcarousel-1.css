@@ -1,0 +1,142 @@
+/* content */
+
+
+
+#amazingcarousel-1 .amazingcarousel-image {	
+	position: relative;
+	padding: 4px;
+	background-color: #fff;
+	-moz-box-shadow: 0 3px 6px #999;
+	-webkit-box-shadow: 0 3px 6px #999;
+	box-shadow:0 3px 6px #999;
+}
+
+#amazingcarousel-1 .amazingcarousel-image img {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+}
+
+#amazingcarousel-1 .amazingcarousel-title {
+	font-family:'Roboto Condensed', sans-serif;
+	font-size:16px;
+	font-weight:400;
+	margin:6px;
+	line-height: 22px;
+	overflow: hidden;
+	text-transform:capitalize;
+	position: absolute;
+    top: 180px;
+    color: rgba(0,0,0,.9);
+    left:6px;
+	border-radius: 1px;
+}
+
+.greybg {
+background-color: rgba(255, 255, 255, .9);
+width: 92%;
+cursor: default;
+padding: 3px;
+}
+
+#amazingcarousel-1 .amazingcarousel-description {
+	position:relative;
+	font: 13px 'Roboto Condensed', sans-serif;
+	color:#333333;
+	line-height: 17px;		
+	overflow: hidden;
+	text-align:left;
+	text-transform:capitalize;
+	width:100%;
+	padding-top: 12px;
+	
+}
+
+#amazingcarousel-1 .amazingcarousel-description a { color:#333333}
+
+/* carousel */
+
+#amazingcarousel-container-1 {
+}
+
+#amazingcarousel-1 .amazingcarousel-list-container { 
+	padding: 2px 0;
+}
+
+/* item */
+
+#amazingcarousel-1 .amazingcarousel-item-container {
+	text-align: center;
+	padding: 4px;
+}
+
+/* arrows */
+
+#amazingcarousel-1 .amazingcarousel-prev {
+	left: 0%;
+	top: 60%;
+	margin-left: -45px;
+	margin-top: -24px;
+}
+
+#amazingcarousel-1 .amazingcarousel-next {
+	right: 0%;
+	top: 60%;
+	margin-right: -45px;
+	margin-top: -24px;
+}
+
+/* navigation bullets */
+
+#amazingcarousel-1 .amazingcarousel-nav {
+	position: absolute;
+	width: 100%;
+	top: 100%;
+}
+
+@media (max-width: 768px) {
+
+#amazingcarousel-1 .amazingcarousel-prev {
+	left: 15%;
+    top: 80%;
+	margin-left: -40px;
+	margin-top: -24px;
+}
+
+#amazingcarousel-1 .amazingcarousel-next {
+	right: 15%;
+    top: 80%;
+	margin-right: -40px;
+	margin-top: -24px;
+}
+}
+
+@media (max-width: 991px) {
+
+#amazingcarousel-1 .amazingcarousel-prev {
+	left: 15%;
+    top: 80%;
+	margin-left: -40px;
+	margin-top: -24px;
+}
+
+#amazingcarousel-1 .amazingcarousel-next {
+	right: 15%;
+    top: 80%;
+	margin-right: -40px;
+	margin-top: -24px;
+}
+}
+
+#amazingcarousel-1 .amazingcarousel-bullet-wrapper {
+	margin: 4px auto;
+}
+
+
+
